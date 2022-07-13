@@ -1,7 +1,11 @@
 
-pub mod generator;
+mod generator;
+
+pub use generator::*;
 
 mod options_and_defaults;
+
+pub use options_and_defaults::*;
 
 #[cfg(test)]
 mod tests {

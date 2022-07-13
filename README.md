@@ -7,18 +7,17 @@ This library makes it convenient to generate file names consisting of a date and
 Example usage:
 
 ```rust
-let mut gen = srfng::generator::Generator::new();
+let mut gen = srfng::Generator::new();
 
 println!("{}", gen.generate().as_str());
 ```
 
-Which in my case prints out something like: 
+Which prints out something like: 
 
 ```
-Mjoo41CE061MmNu8_19012022
+13072022_5m88i663tw17265F
 ```
 
-Which you can then use to name your file.
+Which you can use to name a file.
 
-In the future I may start the string with the date by default so a directory of files using this naming scheme would be somewhat orginised.
-
+A commandline tool using this crate can be found [here](https://github.com/coruscateor/srfngout).

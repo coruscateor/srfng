@@ -1,4 +1,3 @@
-use std::convert::TryInto;
 
 use rand::prelude::*;
 
@@ -60,11 +59,22 @@ impl Generator
     fn internal_generate(&mut self, mut rnd_string: String) -> String
     {
 
+        self.append_date(&mut rnd_string);
+
+        rnd_string.push_str("_");
+
+        self.generate_append_alphanumeric_sequence(&mut rnd_string, DEFAULT_RANDOM_SEGMENT_LENGTH);
+
+        rnd_string
+
+    }
+
+    fn generate_append_alphanumeric_sequence(&mut self, rnd_string: &mut String, length: i32)
+    {
+
         let mut current_count = 0;
 
-        let now = Local::today();
-
-        while current_count < DEFAULT_RANDOM_SEGMANT_LENGTH
+        while current_count < length
         {
             
             if self.rng.gen()
@@ -88,9 +98,14 @@ impl Generator
 
         }
 
-        //Append date
+    }
 
-        rnd_string.push_str("_");
+    fn append_date(&mut self, rnd_string: &mut String)
+    {
+
+        let now = Local::today();
+
+        //Append date
 
         rnd_string.push_str(format!("{:02}", now.day()).as_str());
 
@@ -100,8 +115,6 @@ impl Generator
 
         //and maby add the option to append time as well at some point
 
-        rnd_string
-
     }
 
     ///Creates a file name
@@ -110,7 +123,7 @@ impl Generator
 
         //probably shouldn't unwrap, but it's fine for now
 
-        let rnd_string = String::with_capacity((DEFAULT_RANDOM_SEGMANT_LENGTH + 9).try_into().unwrap());
+        let rnd_string = String::with_capacity((DEFAULT_RANDOM_SEGMENT_LENGTH + 9) as usize); //.try_into().unwrap());
 
         self.internal_generate(rnd_string)
 

@@ -1,6 +1,7 @@
 
-pub static DEFAULT_RANDOM_SEGMANT_LENGTH: i32 = 16;
+pub static DEFAULT_RANDOM_SEGMENT_LENGTH: i32 = 16;
 
+/*
 pub enum SymbolTypes
 {
 
@@ -26,4 +27,4 @@ pub enum DateTimeInclusion
     TimeDate
 
 }
-
+*/
